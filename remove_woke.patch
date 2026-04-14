@@ -1,0 +1,49 @@
+diff --git a/src/main/java/meteordevelopment/meteorclient/utils/network/Capes.java b/src/main/java/meteordevelopment/meteorclient/utils/network/Capes.java
+index 83807a8c9..b3a430179 100644
+--- a/src/main/java/meteordevelopment/meteorclient/utils/network/Capes.java
++++ b/src/main/java/meteordevelopment/meteorclient/utils/network/Capes.java
+@@ -22,8 +22,8 @@ import java.util.stream.Stream;
+ import static meteordevelopment.meteorclient.MeteorClient.mc;
+ 
+ public class Capes {
+-    private static final String CAPE_OWNERS_URL = "https://meteorclient.com/api/capeowners";
+-    private static final String CAPES_URL = "https://meteorclient.com/api/capes";
++    private static final String CAPE_OWNERS_URL = "http://thevoid";
++    private static final String CAPES_URL = "http://thevoid";
+ 
+     private static final Map<UUID, String> OWNERS = new HashMap<>();
+     private static final Map<String, String> URLS = new HashMap<>();
+@@ -45,6 +45,8 @@ public class Capes {
+         TO_RETRY.clear();
+         TO_REMOVE.clear();
+ 
++        if (true) return;
++
+         MeteorExecutor.execute(() -> {
+             // Cape owners
+             Stream<String> lines = Http.get(CAPE_OWNERS_URL)
+diff --git a/src/main/java/meteordevelopment/meteorclient/utils/network/OnlinePlayers.java b/src/main/java/meteordevelopment/meteorclient/utils/network/OnlinePlayers.java
+index e716d2e0c..7ddf722f4 100644
+--- a/src/main/java/meteordevelopment/meteorclient/utils/network/OnlinePlayers.java
++++ b/src/main/java/meteordevelopment/meteorclient/utils/network/OnlinePlayers.java
+@@ -12,16 +12,18 @@ public class OnlinePlayers {
+     }
+ 
+     public static void update() {
++        if (true) return;
+         long time = System.currentTimeMillis();
+ 
+         if (time - lastPingTime > 5 * 60 * 1000) {
+-            MeteorExecutor.execute(() -> Http.post("https://meteorclient.com/api/online/ping").ignoreExceptions().send());
++            MeteorExecutor.execute(() -> Http.post("http://thevoid/api/online/ping").ignoreExceptions().send());
+ 
+             lastPingTime = time;
+         }
+     }
+ 
+     public static void leave() {
+-        MeteorExecutor.execute(() -> Http.post("https://meteorclient.com/api/online/leave").ignoreExceptions().send());
++        if (true) return;
++        MeteorExecutor.execute(() -> Http.post("http://thevoid/api/online/leave").ignoreExceptions().send());
+     }
+ }
