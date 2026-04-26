@@ -2,6 +2,6 @@
 where=$(dirname -- "$0")
 "${where}/apply.sh"
 pushd "$where/meteor" || exit
-"./gradlew" clean build
+"./gradlew" --no-daemon clean build
 popd || exit
 echo "Ok"
